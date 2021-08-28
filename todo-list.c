@@ -9,8 +9,11 @@ int main(void){
 
         int opcao;
         char tarefa[61];
+        int contador;
+        char texto_str[61];
         FILE *pont_arq;
 
+        contador = 1;
         system("cls");
         printf("===================");
         printf("LISTA DE AFAZERES\n");
@@ -34,15 +37,29 @@ int main(void){
                         break;
                     }else{
                         pont_arq = fopen("LISTA-DE-AFAZERES.txt","a");
-                        fprintf(pont_arq,"%s\n",tarefa);
+                        fprintf(pont_arq,"%s",tarefa);
                         fclose(pont_arq);
 
-                        printf("Tarefa Registrada com Sucesso!!");
+                        printf("\n'%s' Registrada com Sucesso!!\n",tarefa);
+                        system("cls");
                     }
 
                 }
 
         }
+
+        if(opcao == 3){
+            system("cls");
+                printf("EXIBIR TAREFAS\n");
+                printf("===================\n");
+                pont_arq = fopen("LISTA-DE-AFAZERES.txt","r");
+                while(fgets(texto_str, 61, pont_arq) != NULL)
+                    printf("%d - %s\n", contador+=1,texto_str);
+                system("pause");
+                fclose(pont_arq);
+        }
+
+
         if(opcao == 4){
             system("cls");
             printf("Ate Logo!");
