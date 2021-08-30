@@ -2,18 +2,18 @@
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
+#include <time.h>
 
 int main(void){
-
     while(1){
 
         int opcao;
-        char tarefa[61];
+        char tarefa[128];
         int contador;
         char texto_str[61];
         FILE *pont_arq;
 
-        contador = 1;
+        contador = 0;
         system("cls");
         printf("===================");
         printf("LISTA DE AFAZERES\n");
@@ -28,7 +28,7 @@ int main(void){
                     system("cls");
                     printf("ADICIONAR TAREFA\n");
                     printf("===================\n");
-                    printf("Escreva a tarefa abaixo ou para sair escreva 'sair'\n>> ");
+                    printf("Escreva a tarefa abaixo ou para sair digite 1\n>> ");
                     gets(tarefa);
 
                     int sair = atoi(tarefa);
@@ -37,11 +37,11 @@ int main(void){
                         break;
                     }else{
                         pont_arq = fopen("LISTA-DE-AFAZERES.txt","a");
-                        fprintf(pont_arq,"%s",tarefa);
+                        fprintf(pont_arq,"%s\n",tarefa);
                         fclose(pont_arq);
-
                         printf("\n'%s' Registrada com Sucesso!!\n",tarefa);
-                        system("cls");
+                        system("pause");
+
                     }
 
                 }
@@ -53,7 +53,7 @@ int main(void){
                 printf("EXIBIR TAREFAS\n");
                 printf("===================\n");
                 pont_arq = fopen("LISTA-DE-AFAZERES.txt","r");
-                while(fgets(texto_str, 61, pont_arq) != NULL)
+                while(fgets(texto_str, 128, pont_arq) != NULL)
                     printf("%d - %s\n", contador+=1,texto_str);
                 system("pause");
                 fclose(pont_arq);
